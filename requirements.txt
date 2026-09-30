@@ -1,0 +1,14 @@
+# Setup:
+#   python -m venv .venv
+#   <activate it>
+#   python -m pip install -U pip setuptools wheel
+#   python -m pip install -r requirements.txt
+#   python verify_setup.py
+
+pandas>=2.0
+numpy>=1.24
+scipy>=1.11
+statsmodels>=0.14
+matplotlib>=3.7
+seaborn>=0.13
+jupyter>=1.0

@@ -1,0 +1,7 @@
+step,rows,removed,note
+loaded results,26759,0,
+joined races (year),26759,0,
+joined status,26759,0,
+filtered to 2009+,6776,19983,pre-2009 out of scope
+dropped grid == 0,6690,86,86 pit-lane starts
+kept classified finishers,5494,1196,"1,196 retirements removed"
