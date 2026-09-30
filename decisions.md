@@ -17,6 +17,9 @@
     Post-filter mean positive as expected because retired cars carry large negative values.
     Kept a second dataset with retirements for the sensitivity test.
 
-
-
-
+03 - Analysis
+   Levene p < .001 -> variances unequal -> Welch's ANOVA is the primary test; standard ANOVA reported alongside
+   Limitation - Shapiro rejects in every era, but n is large and Q-Q plots are near-linear; relying on CLT
+   Limitation - Independence violated (drive-races share a season)
+   Dropped the 'include retirements' sesitivity check - zero-sum within race makes it degenerate
+   Replaced with a finisher-definition robustness check across three definitions
