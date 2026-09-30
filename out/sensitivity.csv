@@ -1,0 +1,4 @@
+definition,n,welch_F,p,reject_H0
+Finished + lapped (primary),5494,8.4332,1.44106e-05,True
+Finished only (strict),3497,3.0584,0.0273905,True
+Top 10 grid slots only,2769,0.6925,0.556729,False
