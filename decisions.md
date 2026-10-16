@@ -1,4 +1,3 @@
-
 00 - Set up project environment -- .venv
 
 01 - Load and verify data
@@ -65,32 +64,46 @@
       One-way ANOVA (primary): F = 8.5224, p = 0.000012 --> reject H0 at α = 0.05
       Welch's ANOVA (robustness): F = 8.4332, p = 0.000014 - same conclusion
       Effect size: eta-squared = 0.00464 - era explains 0.46% of the variance in positions gained
-      Tukey HSD: [PASTE THE PAIRS AND WHETHER EACH REJECTS]
 
-   Supporting regression — per-era slope of finish on grid
+      Tukey HSD (FWER = 0.05):
+ 
+         | group1                   | group2                   | meandiff | p-adj  | lower   | upper   | reject |
+         |:-------------------------|:-------------------------|---------:|-------:|--------:|--------:|:-------|
+         | 1. Pre-DRS (2009-10)     | 2. DRS, V8 (2011-13)     |  -0.0338 | 0.9982 | -0.5404 |  0.4727 | False  |
+         | 1. Pre-DRS (2009-10)     | 3. Hybrid (2014-21)      |  -0.3576 | 0.1763 | -0.8098 |  0.0946 | False  |
+         | 1. Pre-DRS (2009-10)     | 4. Ground effect (2022+) |  -0.7757 | 0.0005 | -1.2810 | -0.2705 | True   |
+         | 2. DRS, V8 (2011-13)     | 3. Hybrid (2014-21)      |  -0.3238 | 0.0939 | -0.6826 |  0.0351 | False  |
+         | 2. DRS, V8 (2011-13)     | 4. Ground effect (2022+) |  -0.7419 | 0.0000 | -1.1656 | -0.3182 | True   |
+         | 3. Hybrid (2014-21)      | 4. Ground effect (2022+) |  -0.4182 | 0.0140 | -0.7751 | -0.0612 | True   |
+ 
+         Three of six pairs differ significantly, and every one of them involves the ground-effect era.
+         No pair among the first three eras differs. 
+         The era effect is entirely a 2022-24 effect, not a steady decline across all four eras.
 
-      | era                      |   slope |   ci_low |   ci_high |   r_squared |    n |
-      |:-------------------------|--------:|---------:|----------:|------------:|-----:|
-      | 1. Pre-DRS (2009-10)     |  0.6256 |   0.5844 |    0.6668 |      0.5946 |  608 |
-      | 2. DRS, V8 (2011-13)     |  0.688  |   0.6584 |    0.7177 |      0.6504 | 1117 |
-      | 3. Hybrid (2014-21)      |  0.6472 |   0.6266 |    0.6679 |      0.5887 | 2635 |
-      | 4. Ground effect (2022+) |  0.6757 |   0.6409 |    0.7105 |      0.562  | 1134 |
+      Supporting regression — per-era slope of finish on grid
 
-      The slopes show no trend and every pair of confidence intervals overlaps.
-      The grid-to-finish relationship has been effectively constant since 2009. 
-      Since the regression is the more direct test of whether starting position has become more decisive, this does NOT support the original hypothesis.
+         | era                      |   slope |   ci_low |   ci_high |   r_squared |    n |
+         |:-------------------------|--------:|---------:|----------:|------------:|-----:|
+         | 1. Pre-DRS (2009-10)     |  0.6256 |   0.5844 |    0.6668 |      0.5946 |  608 |
+         | 2. DRS, V8 (2011-13)     |  0.688  |   0.6584 |    0.7177 |      0.6504 | 1117 |
+         | 3. Hybrid (2014-21)      |  0.6472 |   0.6266 |    0.6679 |      0.5887 | 2635 |
+         | 4. Ground effect (2022+) |  0.6757 |   0.6409 |    0.7105 |      0.562  | 1134 |
 
-   Robustness — finisher definition
+         The slopes show no trend and every pair of confidence intervals overlaps.
+         The grid-to-finish relationship has been effectively constant since 2009. 
+         Since the regression is the more direct test of whether starting position has become more decisive, this does NOT support the original hypothesis.
 
-      | definition                  |    n |   welch_F |           p | reject_H0   |
-      |:----------------------------|-----:|----------:|------------:|:------------|
-      | Finished + lapped (primary) | 5494 |    8.4332 | 1.44106e-05 | True        |
-      | Finished only (strict)      | 3497 |    3.0584 | 0.0273905   | True        |
-      | Top 10 grid slots only      | 2769 |    0.6925 | 0.556729    | False       |
+      Robustness — finisher definition
 
-   The conclusion is sensitive.
-      Restricted to the top 10 grid slots the test fails to reject (p = 0.557). 
-      The era effect exists only when backmarkers are included, which matters because the stated client is a midfield team.
+         | definition                  |    n |   welch_F |           p | reject_H0   |
+         |:----------------------------|-----:|----------:|------------:|:------------|
+         | Finished + lapped (primary) | 5494 |    8.4332 | 1.44106e-05 | True        |
+         | Finished only (strict)      | 3497 |    3.0584 | 0.0273905   | True        |
+         | Top 10 grid slots only      | 2769 |    0.6925 | 0.556729    | False       |
+
+    The conclusion is sensitive.
+         Restricted to the top 10 grid slots the test fails to reject (p = 0.557). 
+         The era effect exists only when backmarkers are included, which matters because the stated client is a midfield team.
 
 04 - Deviations from the plan
 
