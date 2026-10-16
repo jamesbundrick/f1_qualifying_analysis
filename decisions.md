@@ -30,7 +30,6 @@
        A left join plus an assertion fails loudly; an inner join would drop unmatched rows silently.
     Filter to 2009 onward - Scope: 2009+ only. Earlier seasons differ in field size, scoring and data completeness.
     Four eras on regulation boundaries: 2009-10 pre-DRS, 2011-13 DRS with V8, 2014-21 hybrid, 2022-24 ground effect.
-       Boundaries corroborated against the Wikipedia 'History of Formula One regulations' year-by-year entries.
     Dropped 86 pit-lane starts (grid == 0) - not a grid position, and they break the zero-sum validation check.
     Classified finishers = 'Finished' + '+N Lap(s)', built observed status list. Disqualified treated as NOT classified.
     Zero-sum check pre-filter: mean gained = 0.0000 (join verified).
