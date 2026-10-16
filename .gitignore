@@ -1,0 +1,23 @@
+# Virtual environment - rebuild it from requirements.txt instead
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Source data: do NOT commit the Kaggle download.
+# It is not yours to redistribute, and it is large.
+# See data/README.md for how to obtain it.
+
+data/*.csv
+data/*.zip
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Note: out/ IS tracked on purpose - the derived analysis dataset and the figures are project deliverables, and they are small.
