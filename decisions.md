@@ -1,6 +1,6 @@
-00 - Set up project environment -- .venv
+## 00 - Set up project environment -- .venv
 
-01 - Load and verify data
+## 01 - Load and verify data
 
    Loaded results/races/status from Kaggle rohanrao F1 dataset.
       Source | Formula 1 World Championship (1950-2024), Kaggle, published by Rohan Rao 
@@ -13,7 +13,7 @@
    'position' is null for retirements, so 'positionOrder' is the outcome variable.
    26,759 result rows loaded; 86 of the 2009+ entries had grid == 0.
 
-02 - Data preparation
+## 02 - Data preparation
    
    | step                      |   rows |   removed | note                      |
    |:--------------------------|-------:|----------:|:--------------------------|
@@ -36,7 +36,7 @@
     Post-filter mean positive as expected because retired cars carry large negative values.
     Kept a second dataset with retirements for the sensitivity test.
 
-03 - Analysis
+## 03 - Analysis
    
    | era                      |    n |   mean |   median |    sd |   min |   max |
    |:-------------------------|-----:|-------:|---------:|------:|------:|------:|
@@ -45,21 +45,21 @@
    | 3. Hybrid (2014-21)      | 2635 |  1.402 |        1 | 3.848 |   -14 |    19 |
    | 4. Ground effect (2022+) | 1134 |  0.984 |        1 | 3.828 |   -18 |    16 |
 
-   Homogeneity of variance - Levene's test: W = 2.5529, p = 0.0537
+   **Homogeneity of variance - Levene's test: W = 2.5529, p = 0.0537**
       p is above 0.05, so the null of equal variances is not rejected and the standard one-way ANOVA is the primary test.
       The result is marginal (p = 0.054), so Welch's ANOVA was also run as a robustness check; both agree.
 
-   Normality - Shapiro-Wilk and Q-Q plots
+   **Normality - Shapiro-Wilk and Q-Q plots**
       Shapiro rejects in every era, which is expected at these sample sizes, where the test detects trivial departures.
       Q-Q plots are near-linear through the body of each distribution, and with n per era in the hundreds to thousands the central limit theorem protects the F test.
       Recorded as a limitation rather than treated as satisfied.
 
-   Independence
+   **Independence**
       Violated in a known way.
       Driver-races within a season share cars, regulations, and conditions, so observations are not strictly independent.
       Not testable from this data; recorded as a limitation.
 
-   Analysis results
+   **Analysis results**
       One-way ANOVA (primary): F = 8.5224, p = 0.000012 --> reject H0 at α = 0.05
       Welch's ANOVA (robustness): F = 8.4332, p = 0.000014 - same conclusion
       Effect size: eta-squared = 0.00464 - era explains 0.46% of the variance in positions gained
@@ -100,26 +100,26 @@
          | Finished only (strict)      | 3497 |    3.0584 | 0.0273905   | True        |
          | Top 10 grid slots only      | 2769 |    0.6925 | 0.556729    | False       |
 
-    The conclusion is sensitive.
+   The conclusion is sensitive.
          Restricted to the top 10 grid slots the test fails to reject (p = 0.557). 
          The era effect exists only when backmarkers are included, which matters because the stated client is a midfield team.
 
-04 - Deviations from the plan
+## 04 - Deviations from the plan
 
-   Primary test switched from Welch's to standard ANOVA.
+   **Primary test switched from Welch's to standard ANOVA.**
       The plan assumed unequal variances; Levene's test did not support that. 
       Both were run.
 
-   Sensitivity check redesigned.
+   **Sensitivity check redesigned.**
       The plan was to re-run the ANOVA with retirements included. 
       That is degenerate: positions gained is zero-sum within a race, so including every car forces each era's mean to exactly zero and the test becomes a near-identity. 
       Replaced with a finisher-definition robustness check across three definitions.
 
-   Era 4 shortened to 2022–2024 because the dataset ends at 2024.
+   **Era 4 shortened to 2022–2024 because the dataset ends at 2024.**
 
-05 - Limitations discovered during analysis
+## 05 - Limitations discovered during analysis
 
-   Confound: retirement rate and field size
+   **Confound:** retirement rate and field size
 
       Derived from this project's own dataset:
 
@@ -135,7 +135,7 @@
    The decline in positions gained may therefore reflect improved reliability and smaller fields rather than harder overtaking. 
    This is the most significant limitation of the analysis and must be stated plainly in parts F1 and F2.
 
-06 - Other limitations
+## 06 - Other limitations
 
    Observational, not causal. Eras are compared; the regulations themselves are not isolated as a cause.
 
